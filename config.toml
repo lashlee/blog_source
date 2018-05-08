@@ -16,11 +16,11 @@ pygmentscodefences = true
 ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [params]
-  sitename = "Hugo Tanka Theme"
+  sitename = "John's Blog"
 
 [[menu.main]]
     name = "Home"
-    url = "https://lashlee.github.io"
+    url = "https://www.lashl.ee"
     weight = 1
 [[menu.main]]
     name = "GitHub"
