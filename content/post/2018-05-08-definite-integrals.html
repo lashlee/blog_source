@@ -1,0 +1,31 @@
+---
+title: Definite Integrals in R
+author: John
+date: '2018-05-08'
+tags:
+  - definite
+  - integral
+  - r
+slug: definite-integrals-r
+draft: yes
+---
+
+
+
+<p>Let’s do an integral! What is the area under the curve <span class="math inline">\(f(x)=x^2\)</span> from <span class="math inline">\(x=1\)</span> to <span class="math inline">\(x=4\)</span>? We typically write this as <span class="math display">\[\int_1^4 x^2 \, dx\]</span>.</p>
+<p>First, visualize the question.</p>
+<pre class="r"><code>library(ggplot2)
+f &lt;- function(x) x^2
+x_lower &lt;- 1
+x_upper &lt;- 4
+xs &lt;- seq(from = -10, to = 10, length.out = 1000)
+ys &lt;- f(xs)
+ggplot(data.frame(xs, ys), aes(xs,ys)) + 
+  geom_line() +
+  #geom_area(aes(x = ifelse(xs&gt;=x_lower &amp; xs&lt;=x_upper, xs, 0)), fill = &quot;gray&quot;) +
+  scale_x_continuous(expand = c(0,0), name = &quot;&quot;) +
+  scale_y_continuous(expand = c(0,0), name = &quot;&quot;) +
+  theme_classic()</code></pre>
+<p><img src="/post/2018-05-08-definite-integrals_files/figure-html/unnamed-chunk-1-1.png" width="672" /></p>
+<p>Remembering some elementary calculus, we have <span class="math display">\[\int_1^4 x^2 \, dx = \int_1^4 \frac{d}{dx} \frac{x^3}{3} \, dx = \left.\frac{x^3}{3}\right|_1^4 = \frac{4^3}{3}-\frac{1^3}{3} = 21\]</span>.</p>
+<p>So the answer to the original question is 21 units of area. Our computing the answer relied on our knowledge of</p>

@@ -1,0 +1,38 @@
+---
+title: Definite Integrals in R
+author: John
+date: '2018-05-08'
+tags:
+  - definite
+  - integral
+  - r
+slug: definite-integrals-r
+draft: yes
+---
+
+Let's do an integral! What is the area under the curve $f(x)=x^2$ from $x=1$ to $x=4$? We typically write this as $$\int_1^4 x^2 \, dx$$.
+
+First, write an R function that will shade a region of a function f.
+
+```{r}
+shade_one_contiguous_auc <- function(f, region) {
+  library(ggplot2)
+  shade_lower <- min(region)
+  shade_upper <- max(region)
+  f_lower = shade_lower-(shade_upper-shade_lower)/6
+  f_upper = shade_upper+(shade_upper-shade_lower)/6
+  xs <- seq(f_lower, f_upper, length.out = 1000)
+  ys <- f(xs)
+  curve <- data.frame(xs, ys)
+  shade <- curve[curve$xs >= shade_lower & curve$xs <= shade_upper,]
+  ggplot(mapping = aes(xs, ys)) +
+    geom_line(data = curve) +
+    geom_area(data = shade, alpha = .5) +
+    scale_x_continuous(expand = c(0,0), name = "") +
+    scale_y_continuous(expand = c(0,0), name = "") +
+    theme_classic()
+}
+shade_one_contiguous_auc(function(x) x^2, c(1,4))
+```
+
+Second, evaluate it analytically. Remembering some elementary calculus, we have $$\int_1^4 x^2 \, dx = \int_1^4 \frac{d}{dx} \frac{x^3}{3} \, dx = \left.\frac{x^3}{3}\right|_1^4 = \frac{4^3}{3}-\frac{1^3}{3} = 21$$. So the answer to the question is 21 units of area.

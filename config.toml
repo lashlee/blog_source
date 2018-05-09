@@ -1,4 +1,4 @@
-baseurl = "https://lashlee.github.io"
+baseurl = "http://lashl.ee"
 publishDir = "../lashlee.github.io"
 title = "John's Blog"
 author = "John Lashlee"
@@ -20,7 +20,7 @@ ignoreFiles = ["\\.Rmd$", "\\.Rmarkdown$", "_files$", "_cache$"]
 
 [[menu.main]]
     name = "Home"
-    url = "https://www.lashl.ee"
+    url = "http://www.lashl.ee"
     weight = 1
 [[menu.main]]
     name = "GitHub"
