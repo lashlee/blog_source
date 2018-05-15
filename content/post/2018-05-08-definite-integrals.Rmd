@@ -31,7 +31,7 @@ plot_curve <- function(curve, domain) {
 plot_curve(function(x) x^2, c(-1,5))
 ```
 
-So pretty standard stuff. `ggplot::stat_function` 
+So pretty standard stuff. `ggplot::stat_function` does most of the work here, sampling across the domain of the given function and evaluating for us.
 
 ```{r}
 plot_auc <- function(curve, domain, regions) {
@@ -42,7 +42,7 @@ plot_auc <- function(curve, domain, regions) {
 plot_auc(curve = function(x) x^2, domain = c(-1,5), regions = list(c(-1,2), c(4,5)))
 ```
 
-In general it is not easy to find antiderivatives such as above, so we use [numerical integration schemes](https://en.wikipedia.org/wiki/Numerical_integration) in order to approximate solutions. 
+In general it is not easy to find antiderivatives such as above, so we use [numerical integration schemes](https://en.wikipedia.org/wiki/Numerical_integration) in order to approximate solutions. I will be back in future posts to discuss some methods for doing this.
 
 ```{r eval=FALSE, echo=FALSE}
 plot_auc(curve = function(x) x^2, domain = c(-10, 7), regions = list(c(1,2), c(3,4,5), c(-1,0), c(-4,-8)))

@@ -9,6 +9,7 @@ tags:
   - probability
   - conditional probability
   - functional programming
+  - r
 ---
 
 \newcommand{\TP}{T\!P}
