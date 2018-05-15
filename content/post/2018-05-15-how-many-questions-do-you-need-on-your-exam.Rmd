@@ -100,7 +100,7 @@ ggplot(data = sims, mapping = aes(x = num_questions, y = cam_given_nm_rate)) +
   theme_classic()
 ```
 
-Great, so now we can see the rates that we classify as having mastery given nonmastery for the various exam lengths. A quick could of sanity checks:
+Great, so now we can see the rates that we classify as having mastery given nonmastery for the various exam lengths. A quick couple of sanity checks:
 
 - On an exam with one question, we classify as mastery 1/4 of the time. This makes sense because a person with nonmastery answers a single question correctly 1/4 of the time.
 
