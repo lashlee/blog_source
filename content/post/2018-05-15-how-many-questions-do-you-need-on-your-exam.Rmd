@@ -50,7 +50,7 @@ Now how often does each of these happen? Some notation:
     - CAM: Classify as Mastery
     - CANM: Classify as Nonmastery.
 
-OK, now we can break down the problem. First, we have $\left|\text{TP}\right| = \left|\text{All Observations}\right|P(M)P(\CAM \vert M)$. This is because the product $\left|\text{All Observations}\right|P(M)$ is the number of positive (i.e. mastery) observations and $P(\CAM \vert \M)$ is the fraction of positive (i.e. mastery) observations which are classified as mastery.
+OK, now we can break down the problem. First, we have $\left|\text{TP}\right| = \left|\text{All Observations}\right|P(M)P(\CAM \vert M)$. This is because the product $\left|\text{All Observations}\right|P(M)$ is the number of positive (i.e. mastery) observations and $P(\CAM \vert M)$ is the fraction of positive (i.e. mastery) observations which are classified as mastery.
 
 Similarly, we have $\left|\text{TN}\right| = \left|\text{All Observations}\right|P(\NM)P(\CANM \vert \NM)$. Because a nonmastery observation must either be classified as mastery or nonmastery and because all observations must either be from people possessing mastery or nonmastery, we have $P(M) + P(\NM) = 1$ and $P(\CAM \vert \NM) + P(\CANM \vert NM) = 1$. Combined with the problems' stating that there are equal numbers of people with mastery and nonmastery, we have $P(M) = P(\NM) = \frac{1}{2}$.
 
@@ -212,7 +212,7 @@ So for our four distributional assumptions of aptitudes of test takers possessin
 1. When aptitudes are clustered around 100% our exam needs only 4 questions!
 1. When aptitudes are normally distributed centered at 75% our exam needs 13 questions.
 
-I think that the scenario where we assume that people with mastery have aptitudes roughly evenly distributed from 50% to 100% is reasonable and conservative. So I would advise the question asker that making her exam 13 questions long would give her a 95% chance of being able to deduce which students possess master and which do not.
+I think that the scenario where we assume that people with mastery have aptitudes roughly evenly distributed from 50% to 100% is reasonable and conservative. So I would advise the question asker that making her exam 13 questions long would give her a 95% chance of being able to deduce which students possess mastery and which do not.
 
 ### Question in Review
 
