@@ -212,7 +212,7 @@ So for our four distributional assumptions of aptitudes of test takers possessin
 1. When aptitudes are clustered around 100% our exam needs only 4 questions!
 1. When aptitudes are normally distributed centered at 75% our exam needs 13 questions.
 
-I think that the scenario where we assume that people with mastery have aptitudes roughly evenly distributed from 50% to 100% is reasonable and conservative. So I would advise the question asker that making her exam 13 questions long would give her a 95% chance of being able to deduce which students possess mastery and which do not.
+I think that the scenario where we assume that people with mastery have aptitudes roughly evenly distributed from 50% to 100% is reasonable and conservative. So I would advise the question asker that making her exam 19 questions long would give her a 95% chance of being able to deduce which students possess mastery and which do not.
 
 ### Question in Review
 
