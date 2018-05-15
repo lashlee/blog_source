@@ -205,7 +205,7 @@ ggplot(data = result, aes(num_questions, accuracy, color = label)) +
   theme_classic()
 ```
 
-So four our four distributional assumptions of aptitudes of test takers possessing mastery, we have the following results:
+So for our four distributional assumptions of aptitudes of test takers possessing mastery, we have the following results:
 
 1. When aptitudes are evenly spread from 50% to 100%, our exam needs 19 questions.
 1. When aptitudes are clustered around 50%, we need many more than 30 questions.
