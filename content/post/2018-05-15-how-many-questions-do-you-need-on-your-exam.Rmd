@@ -216,7 +216,7 @@ I think that the scenario where we assume that people with mastery have aptitude
 
 ### Question in Review
 
-Some of the topics we reviewed and applied in the answering this question:
+Some of the topics we reviewed and applied in answering this question:
 
 1. Classification rule
 1. Definition of accuracy
