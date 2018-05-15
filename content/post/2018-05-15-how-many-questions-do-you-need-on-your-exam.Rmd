@@ -84,7 +84,7 @@ What exactly is $P(\CAM \vert \NM)$? Again, that is the rate at which someone wh
 rbinom(n = 10, size = 8, prob = 1/4)
 ```
 
-Here we have simulated 10 exams each with 8 questions, each individual question having a 1/4 chance of being answered correctly. So we can do this for a large number of simulations and observe the result:
+Here we have simulated 10 exams each with 8 questions, each individual question having a 1/4 chance of being answered correctly. The 10 numbers shown represent the number of correct responses in each exam. So we can do this for a large number of simulations and observe the result:
 
 ```{r}
 library(ggplot2)
@@ -102,9 +102,8 @@ ggplot(data = sims, mapping = aes(x = num_questions, y = cam_given_nm_rate)) +
 
 Great, so now we can see the rates that we classify as having mastery given nonmastery for the various exam lengths. A quick couple of sanity checks:
 
-- On an exam with one question, we classify as mastery 1/4 of the time. This makes sense because a person with nonmastery answers a single question correctly 1/4 of the time.
-
-- On an exam with two questions, we classify as mastery 1/16 of the time. This makes sense because a person with nonmastery answers both questions in the two-question-exam correctly 1/16 = (1/4)*(1/4) of the time.
+1. On an exam with one question, we classify as mastery 1/4 of the time. This makes sense because a person with nonmastery answers a single question correctly 1/4 of the time.
+2. On an exam with two questions, we classify as mastery 1/16 of the time. This makes sense because a person with nonmastery answers both questions in the two-question-exam correctly 1/16 = (1/4)*(1/4) of the time.
 
 ### Simulating The Rate of Classifying as Mastery Given Mastery
 
