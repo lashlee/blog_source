@@ -1,0 +1,82 @@
+---
+title: Power Sets in R
+author: John
+date: '2018-05-17'
+slug: power-sets-in-r-and-python
+categories: []
+tags:
+  - power set
+  - r
+  - python
+draft: true
+---
+
+### Set
+
+A *set* is a collection of items. The order of the items doesn't matter. The items are called *elements*. The elements can be anything, even other sets. Sets have a restriction though that any element can't appear more than once. For example, $\{\text{cat}\}$ is a set. That set is a collection of one thing, $\text{cat}$. Also, $\{\}$ is a set. That set is a collection of no things. The special name for that set is the empty set, because... well... it's empty. But $\{\{\}, \{\text{cat}\}\}$ is a set too. It's the set of the empty set and the set of $\text{cat}$. 
+
+Check this out: $\{\text{cat}, \text{cat}\}$ is **not** a set because $\text{cat}$ appears more than once. But  $\{\text{cat}, \{\text{cat}\}\}$ **is** a set because $\text{cat}$ and $\{\text{cat}\}$ are not the same thing! That's because $\text{cat}$ is a thing, but $\{\text{cat}\}$ is *the set of cat*. The set of cat. The set of cat. The set of cat. Yes. **It sounds stupid to say, but cat is not the same thing as the set of cat.** So you just have to say it over and over until you believe it. The set of cat. The set of cat. The set of cat.
+
+### Multiset
+
+If you start with the idea of a set, but then you get rid of that restriction that elements can't appear more than once, then you have a *multiset* So remember that $\{\text{cat}, \text{cat}\}$ was not a set, because $\text{cat}$ appears more than once. But $\{\text{cat}, \text{cat}\}$ is a multiset.
+
+### Subset
+
+If you start with a set, but then you pick out any number of elements it contains, then you have a *subset* of the set you started with. All sets are subsets. But we only really talk about subsets when we have a reference set in mind. A few examples of subsets:
+
+1. For example, start with $\{\text{cat}\}$ and pick nothing from it. Now you have $\{\}$. So we say that $\{\}$ is a subset of $\{\text{cat}\}$. In fact, $\{\}$ is a subset of every set, even itself. Because you can always choose to pick nothing. 
+
+1. Now start with $\{\text{cat}\}$ and pick $\text{cat}$. Now you have $\{\text{cat}\}$. So we say that $\{\text{cat}\}$ is a subset of itself. In fact, every set is a subset of itself. Because you can always choose to pick everything that's there.
+
+1. Finally, start with $\{\{\}, \text{cat}\}$. You can pick neither, either, or both. There are four options, so all the valid subsets of $\{\{\}, \text{cat}\}$ are ... 
+  + The empty set: $\{\}$,
+  + The set of the empty set: $\{\{\}\}$,
+  + $\{\text{cat}\}$, and
+  + $\{\{\}, \text{cat}\}$.
+  
+Hold that thought.
+
+### Power Set
+
+If you start with a set, find all its subsets, and then stuff them into a set of their own, then that's the starting set's *power set*. We just worked out all the subsets of $\{\{\},\text{cat}\}$. So let's jam them all together into a set of their own and get the following (Brace yourself!) $\{\{\},\{\{\}\},\{\text{cat}\},\{\{\}.\text{cat}\}\}$. This power set has four elements. 
+
+And you can build power sets from multisets too. But power sets are still sets. So just make sure to only include those distinct elements.
+
+### Building Power Sets
+
+OK, so definitions are out of the way. How do we actually build power sets from a set? We need to make sure we have the empty set. We need to make sure we have every set comprised of one element, every set comprised of two elements, every set comprised of three elements, etc. All the way until we have the set comprised of *every* element in the set. That's just the set itself.
+
+There are a few ways to build a power set, but the one that makes the most sense to me is this: 
+
+1. Start off the power set with $\{\}$, the empty set. 
+
+1. Then take the first element of your set. For simplicity, let's just call it $e_1$. First jam $e_1$ onto the end of $\{\}$. That results in $\{e_1\}$. Now we have a new element, so add it to the power set! So our new power set candidate is both items together, $\{\{\}, \{e_1\}\}$. 
+
+1. Now take the second element of your set. For simplicity, let's call it $e_2$. First jam $e_2$ onto the end of all the elements in the power set. That results in $\{e_2\}$ and $\{e_1, e_2\}$. Now we have two new elements, so add them to the power set! So our new power set candidate is all four items together, $\{\{\}, \{e_1\}. \{e_2\}, \{e_1, e_2\}\}$. 
+
+1. Repeat for the third element. Try to work it out. The answer will look like this: $\{\{\}, \{e_1\}. \{e_2\}, \{e_3\}, \{e_1, e_2\}, \{e_1, e_3\}, \{e_2, e_3\}, \{e_1, e_2, e_3\}\}$.
+
+1. Repeat this process for every element in the starting set. 
+
+1. We're done. That's our power set, hooray!
+
+### Building a Power Set in R Code
+
+```{r}
+power_set <- function(multiset, acc = list()) {
+  s <- unique(multiset)
+  Reduce(function(lst,item) c(lst, item, Map(function(x) unlist(list(item, x)), lst)), s, acc)
+}
+power_set(list("cat", "cat", "elk", "fox"))
+```
+
+```{r}
+map_append <- function(lst, item) Map(function(x) append(x, item), lst)
+power_set_with_helper <- function(multiset, acc = list()) {
+  s <- unique(multiset)
+  Reduce(function(lst,item) c(lst, item, map_append(lst, item)), s, acc)
+}
+power_set(list("cat", "cat", "elk", "fox"))
+```
+

@@ -1,0 +1,129 @@
+---
+title: Power Sets in R and Python
+author: John
+date: '2018-05-16'
+slug: power-sets-in-r-and-python
+categories: []
+tags:
+  - power set
+  - r
+  - python
+draft: true
+---
+
+
+
+<div id="set" class="section level3">
+<h3>Set</h3>
+<p>A <em>set</em> is a collection of items. The order of the items doesn’t matter. The items are called <em>elements</em>. The elements can be anything, even other sets. Sets have a restriction though that any element can’t appear more than once. For example, <span class="math inline">\(\{\text{cat}\}\)</span> is a set. That set is a collection of one thing, <span class="math inline">\(\text{cat}\)</span>. Also, <span class="math inline">\(\{\}\)</span> is a set. That set is a collection of no things. The special name for that set is the empty set, because… well… it’s empty. But <span class="math inline">\(\{\{\}, \{\text{cat}\}\}\)</span> is a set too. It’s the set of the empty set and the set of <span class="math inline">\(\text{cat}\)</span>.</p>
+<p>Check this out: <span class="math inline">\(\{\text{cat}, \text{cat}\}\)</span> is <strong>not</strong> a set because <span class="math inline">\(\text{cat}\)</span> appears more than once. But <span class="math inline">\(\{\text{cat}, \{\text{cat}\}\}\)</span> <strong>is</strong> a set because <span class="math inline">\(\text{cat}\)</span> and <span class="math inline">\(\{\text{cat}\}\)</span> are not the same thing! That’s because <span class="math inline">\(\text{cat}\)</span> is a thing, but <span class="math inline">\(\{\text{cat}\}\)</span> is <em>the set of cat</em>. The set of cat. The set of cat. The set of cat. Yes. <strong>It sounds stupid to say, but cat is not the same thing as the set of cat.</strong> So you just have to say it over and over until you believe it. The set of cat. The set of cat. The set of cat.</p>
+</div>
+<div id="multiset" class="section level3">
+<h3>Multiset</h3>
+<p>If you start with the idea of a set, but then you get rid of that restriction that elements can’t appear more than once, then you have a <em>multiset</em> So remember that <span class="math inline">\(\{\text{cat}, \text{cat}\}\)</span> was not a set, because <span class="math inline">\(\text{cat}\)</span> appears more than once. But <span class="math inline">\(\{\text{cat}, \text{cat}\}\)</span> is a multiset.</p>
+</div>
+<div id="subset" class="section level3">
+<h3>Subset</h3>
+<p>If you start with a set, but then you pick out any number of elements it contains, then you have a <em>subset</em> of the set you started with. All sets are subsets. But we only really talk about subsets when we have a reference set in mind. A few examples of subsets:</p>
+<ol style="list-style-type: decimal">
+<li><p>For example, start with <span class="math inline">\(\{\text{cat}\}\)</span> and pick nothing from it. Now you have <span class="math inline">\(\{\}\)</span>. So we say that <span class="math inline">\(\{\}\)</span> is a subset of <span class="math inline">\(\{\text{cat}\}\)</span>. In fact, <span class="math inline">\(\{\}\)</span> is a subset of every set, even itself. Because you can always choose to pick nothing.</p></li>
+<li><p>Now start with <span class="math inline">\(\{\text{cat}\}\)</span> and pick <span class="math inline">\(\text{cat}\)</span>. Now you have <span class="math inline">\(\{\text{cat}\}\)</span>. So we say that <span class="math inline">\(\{\text{cat}\}\)</span> is a subset of itself. In fact, every set is a subset of itself. Because you can always choose to pick everything that’s there.</p></li>
+<li>Finally, start with <span class="math inline">\(\{\{\}, \text{cat}\}\)</span>. You can pick neither, either, or both. There are four options, so all the valid subsets of <span class="math inline">\(\{\{\}, \text{cat}\}\)</span> are …</li>
+</ol>
+<ul>
+<li>The empty set: <span class="math inline">\(\{\}\)</span>,</li>
+<li>The set of the empty set: <span class="math inline">\(\{\{\}\}\)</span>,</li>
+<li><span class="math inline">\(\{\text{cat}\}\)</span>, and</li>
+<li><span class="math inline">\(\{\{\}, \text{cat}\}\)</span>.</li>
+</ul>
+<p>Hold that thought.</p>
+</div>
+<div id="power-set" class="section level3">
+<h3>Power Set</h3>
+<p>If you start with a set, find all its subsets, and then stuff them into a set of their own, then that’s the starting set’s <em>power set</em>. We just worked out all the subsets of <span class="math inline">\(\{\{\},\text{cat}\}\)</span>. So let’s jam them all together into a set of their own and get the following (Brace yourself!) <span class="math inline">\(\{\{\},\{\{\}\},\{\text{cat}\},\{\{\}.\text{cat}\}\}\)</span>. This power set has four elements.</p>
+<p>And you can build power sets from multisets too. But power sets are still sets. So just make sure to only include those distinct elements.</p>
+</div>
+<div id="building-power-sets" class="section level3">
+<h3>Building Power Sets</h3>
+<p>OK, so definitions are out of the way. How do we actually build power sets from a set? We need to make sure we have the empty set. We need to make sure we have every set comprised of one element, every set comprised of two elements, every set comprised of three elements, etc. All the way until we have the set comprised of <em>every</em> element in the set. That’s just the set itself.</p>
+<p>There are a few ways to build a power set, but the one that makes the most sense to me is this:</p>
+<ol style="list-style-type: decimal">
+<li><p>Start off the power set with <span class="math inline">\(\{\}\)</span>, the empty set.</p></li>
+<li><p>Then take the first element of your set. For simplicity, let’s just call it <span class="math inline">\(e_1\)</span>. First jam <span class="math inline">\(e_1\)</span> onto the end of <span class="math inline">\(\{\}\)</span>. That results in <span class="math inline">\(\{e_1\}\)</span>. Now we have a new element, so add it to the power set! So our new power set candidate is both items together, <span class="math inline">\(\{\{\}, \{e_1\}\}\)</span>.</p></li>
+<li><p>Now take the second element of your set. For simplicity, let’s call it <span class="math inline">\(e_2\)</span>. First jam <span class="math inline">\(e_2\)</span> onto the end of all the elements in the power set. That results in <span class="math inline">\(\{e_2\}\)</span> and <span class="math inline">\(\{e_1, e_2\}\)</span>. Now we have two new elements, so add them to the power set! So our new power set candidate is all four items together, <span class="math inline">\(\{\{\}, \{e_1\}. \{e_2\}, \{e_1, e_2\}\}\)</span>.</p></li>
+<li><p>Repeat for the third element. Try to work it out. The answer will look like this: <span class="math inline">\(\{\{\}, \{e_1\}. \{e_2\}, \{e_3\}, \{e_1, e_2\}, \{e_1, e_3\}, \{e_2, e_3\}, \{e_1, e_2, e_3\}\}\)</span>.</p></li>
+<li><p>Repeat this process for every element in the starting set.</p></li>
+<li><p>We’re done. That’s our power set, hooray!</p></li>
+</ol>
+</div>
+<div id="building-a-power-set-in-python" class="section level3">
+<h3>Building a Power Set in Python</h3>
+<p>Python has a really nifty way to jam sets together. You just write both sets down with a plus in between them. So I think making power sets in Python is easy.</p>
+<pre class="python"><code>def power_set(multiset, acc = [[]]):
+  s = list(set(multiset))
+  return(acc if not s else power_set(s[1:], acc + [i + [s[0]] for i in acc]))
+print(power_set([]))</code></pre>
+<pre><code>## [[]]</code></pre>
+<pre class="python"><code>print(power_set([&#39;a&#39;, &#39;b&#39;, &#39;c&#39;]))</code></pre>
+<pre><code>## [[], [&#39;a&#39;], [&#39;c&#39;], [&#39;a&#39;, &#39;c&#39;], [&#39;b&#39;], [&#39;a&#39;, &#39;b&#39;], [&#39;c&#39;, &#39;b&#39;], [&#39;a&#39;, &#39;c&#39;, &#39;b&#39;]]</code></pre>
+<pre class="python"><code>print(power_set([5, 2, 99, 0]))</code></pre>
+<pre><code>## [[], [0], [2], [0, 2], [99], [0, 99], [2, 99], [0, 2, 99], [5], [0, 5], [2, 5], [0, 2, 5], [99, 5], [0, 99, 5], [2, 99, 5], [0, 2, 99, 5]]</code></pre>
+<pre class="python"><code>print(power_set([&#39;cat&#39;, &#39;dog&#39;, &#39;elk&#39;]))</code></pre>
+<pre><code>## [[], [&#39;elk&#39;], [&#39;dog&#39;], [&#39;elk&#39;, &#39;dog&#39;], [&#39;cat&#39;], [&#39;elk&#39;, &#39;cat&#39;], [&#39;dog&#39;, &#39;cat&#39;], [&#39;elk&#39;, &#39;dog&#39;, &#39;cat&#39;]]</code></pre>
+<pre class="r"><code>power_set &lt;- function(multiset, acc = list()) {
+  s &lt;- ifelse(identical(acc, list()), unique(multiset), multiset)
+  return(ifelse(is.null(s), acc, power_set(multiset[-1], unique())))
+}</code></pre>
+<pre class="r"><code>add_item_to_every_list_item &lt;- function(lst, item) Map(function(x) list(item, x), lst)
+stick_on_end_of_list &lt;- function(lst, item) c(lst, item)
+power_setify_by_one_item &lt;- function(lst, item) unique(c(stick_on_end_of_list(lst, item), add_item_to_every_list_item(lst, item)))
+power_set &lt;- function(multiset, acc = list()) {
+  Reduce(power_setify_by_one_item, multiset, acc)
+}
+foo &lt;- power_set(list(1,2,3))
+foo</code></pre>
+<pre><code>## [[1]]
+## [1] 1
+## 
+## [[2]]
+## [1] 2
+## 
+## [[3]]
+## [[3]][[1]]
+## [1] 2
+## 
+## [[3]][[2]]
+## [1] 1
+## 
+## 
+## [[4]]
+## [1] 3
+## 
+## [[5]]
+## [[5]][[1]]
+## [1] 3
+## 
+## [[5]][[2]]
+## [1] 1
+## 
+## 
+## [[6]]
+## [[6]][[1]]
+## [1] 3
+## 
+## [[6]][[2]]
+## [1] 2
+## 
+## 
+## [[7]]
+## [[7]][[1]]
+## [1] 3
+## 
+## [[7]][[2]]
+## [[7]][[2]][[1]]
+## [1] 2
+## 
+## [[7]][[2]][[2]]
+## [1] 1</code></pre>
+<p>Reduce(function(a,b) c(a,b), list(1,2,3,4,5), list())</p>
+</div>

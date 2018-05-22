@@ -32,7 +32,7 @@ The goal here is to design the shortest test such that we can separate people in
 
 The way that we express this is in terms of *true positives* and *true negatives*. A true positive is a case where we classify someone as having mastery and that person actually had mastery. A true negative is a case where we classify someone as not having mastery and that person actually does not have mastery. And keep in mind that our rules for classification are observing whether or not the person got the majority of questions correct.
 
-In sybols we have the following:
+In symbols we have the following:
 
 $$\text{Accuracy} = \frac{\left|\text{True Positives}\right| + \left|\text{True Negatives}\right|}{\left|\text{All Observations} \right|}$$
 
