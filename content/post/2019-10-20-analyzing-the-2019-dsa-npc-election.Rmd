@@ -3,6 +3,7 @@ title: "Estimating the Internal Structure of the 2019-2021 DSA NPC"
 author: "John Lashlee"
 date: '2019-10-20'
 slug: estimating-structure-dsa-npc
+twitterImg: https://github.com/lashlee/lashlee.github.io/blob/master/post/npc_net.png?raw=true
 tags:
 - social networks
 - graphs
@@ -23,11 +24,11 @@ Here are two social networks representing high school friendship data, [courtesy
 
 ![](/post/2019-10-20-analyzing-the-2019-dsa-npc-election_files/thomasp85_highschools.png)
 
-Social networks can be directed (think Twitter follows, unilateral); undirected (think Facebook friendships, reciprocal); weighted, where connections have amounts; and unweighted, where you're either connected or not. For example, a directed, weighted network is individuals' Venmo payments.
+Social networks can be directed (think Twitter follows, unilateral); undirected (think Facebook friendships, reciprocal); weighted, where connections have amounts; and unweighted, where you're either connected or not. For example, a directed, weighted network is formed of individuals' Venmo payments.
 
 ## Ballots to Social Network
 
-So how can I infer the internal structure of the NPC from the delegates' ballots? Each time a delegate fills out a ballot, that says something about how similar the candidates are. The basic assumption of my analysis is that *despite delegates place candidates they feel similarly about close to each other on their ballots*. From that assumption, I calculate on average how closely each candidat appears to each other. And that forms a social network. 
+So how can I infer the internal structure of the NPC from the delegates' ballots? Each time a delegate fills out a ballot, that says something about how similar the candidates are. The basic assumption of my analysis is that *delegates place candidates they feel similarly towards close to each other on their ballots*. From that assumption, I calculate the average distances from each candidate to each other candidate. Those distances, from each candidate to each other candidate, form a weighted, undirected social network.
 
 Take this delegate's ballot, for example:
 
@@ -80,7 +81,9 @@ ballots %>%
   knitr::kable(align = 'l', col.names = c('Rank', 'Candidate'))
 ```
 
-In doing this analysis, I read that this person has a pretty similar preference for Austin G as they do for Megan S and for Dave P. And the conceit of the analysis is that this similarity of preference is reflective of a similarity in the candidates. And this similarity of candidates will manifest as an internal structure of the NPC.
+In doing this analysis, I read that this voter has a pretty similar preference for Austin G as they do for Megan S and for Dave P. Each of those pairs are separated by 1 rank. Similarly, this voter separates Sauce and Jen Snyder by 4 ranks.
+
+The conceit of the analysis is that this similarity of preference is reflective of a similarity in the candidates. And this similarity of candidates will manifest as an internal structure of the NPC.
 
 Go through all those steps and this is what you get:
 
@@ -130,9 +133,9 @@ Here's a simple example of a three-community network from Wikipedia:
 
 You can see it's not that the communities are completely disjointed. They are linked to each other. It's that there are more connections inside the community than outside it. That leads to a natural question: how densely connected do these communities need to be to draw the line at inclusion in them? 
 
-When you're doing social network analysis as part of a scientific analysis, you might have other variables which you can benchmark your communities against. But in the case of this analysis, I'm just  the communities and don't have much data on the candidates. So I'll just be going with the default community detection algorithm here. 
+When you're doing social network analysis as part of a scientific analysis, you might have other variables which you can benchmark your communities against. But in the case of this analysis, I'm just discovering the communities and don't have much data on the candidates. So I'll just be going with the default community detection algorithm here. 
 
-In this case the community detection algorithm is known as _infomap community finding_ [Link to code with citations](https://github.com/igraph/rigraph/blob/675946d0d30a3e29b3562a76d25a52faf2332240/R/community.R#L1612). The basic idea of the algorithm is you walk around the graph You walk from node to node at random, more likely to move to closer nodes than farther ones. And the communities are clustered nodes where you spend most of your time.
+In this case the community detection algorithm is known as _infomap community finding_ [(Link to code with citations)](https://github.com/igraph/rigraph/blob/675946d0d30a3e29b3562a76d25a52faf2332240/R/community.R#L1612). The basic idea of the algorithm is you walk around the graph from node to node at random, more likely to move to closer nodes than farther ones. And the communities are clustered nodes where you spend most of your time.
 
 Run the algorithm and this is what you get:
 
